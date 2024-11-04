@@ -1,4 +1,5 @@
 export function parsePlayerLookup(text) {
+    console.log(text);
     const a = text.split('<tbody')[1].split('<td class=\"list-column\">');
     const players = [];
     for (let i = 1; i < a.length; i += 6) {
