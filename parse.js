@@ -5,7 +5,7 @@ export function parsePlayerLookup(text) {
         players.push({
             index: parsePlayerLookupIndex(a[i]),
             id: parsePlayerLookupId(a[i+1]),
-            name: parsePlayerLookupName(a[i+1]) + " " + parseName(a[i+2]),
+            name: parsePlayerLookupName(a[i+1]) + " " + parsePlayerLookupName(a[i+2]),
             usatt: parsePlayerLookupUsatt(a[i+3]),
             location: parsePlayerLookupLocation(a[i+4]),
             clubId: parsePlayerLookupClubId(a[i+5]),
