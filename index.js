@@ -1,7 +1,7 @@
 const express = require('express');
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { parsePlayerLookup, parsePlayerInfo } = require('./parse');
+// const { parsePlayerLookup, parsePlayerInfo } = require('./parse');
 
 puppeteer.use(StealthPlugin());
 
@@ -17,15 +17,15 @@ app.get('/usatt/player-lookup/:keyword', async (req, res) => {
 
   let browser;
   try {
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: false });
 
     const page = await browser.newPage();
 
     await page.goto(url, { waitUntil: 'networkidle2' });
 
     const content = await page.content();
-
-    res.json(parsePlayerLookup(content));
+    res.json(content);
+    // res.json(parsePlayerLookup(content));
   } catch (error) {
     console.error("Error during scraping:", error);
     res.status(500).json({ error: "Scraping failed", details: error.message });
@@ -45,14 +45,15 @@ app.get('/usatt/player-info/:playerId', async (req, res) => {
 
   let browser;
   try {
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: false });
 
     const page = await browser.newPage();
+
     await page.goto(url, { waitUntil: 'networkidle2' });
 
     const content = await page.content();
-
-    res.json(parsePlayerInfo(content));
+    res.json(content);
+    // res.json(parsePlayerInfo(content));
   } catch (error) {
     console.error("Error during scraping:", error);
     res.status(500).json({ error: "Scraping failed", details: error.message });
